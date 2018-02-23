@@ -17,7 +17,17 @@ public class StopwatchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stopwatch);
+        if (savedInstanceState != null) {
+            seconds = savedInstanceState.getInt("seconds", seconds);
+            running = savedInstanceState.getBoolean("running", running);
+        }
         runTimer();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt("seconds", seconds);
+        outState.putBoolean("running", running);
     }
 
     //Start the stopwatch running when the Start button is clicked.
